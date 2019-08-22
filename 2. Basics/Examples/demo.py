@@ -5,3 +5,9 @@ Created on Thu Aug 22 11:47:22 2019
 @author: mtroyer
 """
 
+import os
+
+help(os)
+
+dir(os)
+
