@@ -13,7 +13,7 @@ soil_data = r'\\blm\dfs\loc\EGIS\ReferenceState\CO\CorporateData\soils\NRCS STAT
 
 # By this boundary:
 # You'll need to choose your own clip features and change this path.
-clip_data = r'\\blm\dfs\loc\EGIS\CO\GIS\gisuser\rgfo\mtroyer\Python_Demo\Batch_Summary\Batch_Summary.gdb\Clip_Area'
+clip_data = r'\\blm\dfs\loc\EGIS\CO\GIS\gisuser\rgfo\mtroyer\Python_Demo\Batch_Clip\Batch_Clip.gdb\Clip_Area'
 
 
 # From the arcpy.Clip_analysis docstring:
@@ -28,7 +28,7 @@ geographic subset of the features in another, larger feature class.
      * INPUTS:
       in_features (Feature Layer): The features to be clipped.
       clip_features (Feature Layer): The features used to clip the input features.
-      cluster_tolerance {Linear unit}: The minimum distance separating all feature coordinates as well as the distance a coordinate can move in X or Y (or both). Set the value to be higher for data with less coordinate accuracy and lower for data with extremely high accuracy.
+      cluster_tolerance {Linear unit}: The minimum distance separating all feature coordinates as well as the distance a coordinate can move in X or Y (or both). 
 
      * OUTPUTS:
       out_feature_class (Feature Class): The feature class to be created.
@@ -48,7 +48,7 @@ geographic subset of the features in another, larger feature class.
 
 # Choose your own geodatabase and change this path.
 # If you want to output shapefiles, you'll need to change this path to a folder location.
-output_gdb = r'T:\CO\GIS\gisuser\rgfo\mtroyer\Python_Demo\Batch_Summary\Batch_Summary.gdb'
+output_gdb = r'T:\CO\GIS\gisuser\rgfo\mtroyer\Python_Demo\Batch_Clip\Batch_Clip.gdb'
 
 # We may as well reuse the input (in_features) names for our outputs so it is clear what each output is..
 # So, we need to first extract the feature class names from the inputs.
