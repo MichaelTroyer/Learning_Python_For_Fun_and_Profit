@@ -84,3 +84,14 @@ for input_fc in input_fcs:
     output_path = get_output_path(output_gdb, input_fc)
     arcpy.Clip_analysis(in_features=input_fc, clip_features=clip_data, out_feature_class=output_path)
 
+
+
+# We can even wrap all of this up in a simple little function to run the whole process end-to-end
+def batch_clip_data(workspace, in_features, clip_features):
+    for feature in in_features:
+        output_path = get_output_path(workspace, feature)
+        arcpy.Clip_analysis(
+            in_features=feature,
+            clip_features=clip_features,
+            out_feature_class=output_path
+            )
