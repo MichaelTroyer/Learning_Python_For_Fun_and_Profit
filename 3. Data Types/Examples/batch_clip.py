@@ -2,6 +2,8 @@ import os
 import arcpy
 
 
+arcpy.env.overwriteOutput = True
+
 
 #### Batch clip example: #####
 # Let's batch clip and output some features!
@@ -13,7 +15,7 @@ soil_data = r'\\blm\dfs\loc\EGIS\ReferenceState\CO\CorporateData\soils\NRCS STAT
 
 # By this boundary:
 # You'll need to choose your own clip features and change this path.
-clip_data = r'\\blm\dfs\loc\EGIS\CO\GIS\gisuser\rgfo\mtroyer\Python_Demo\Batch_Clip\Batch_Clip.gdb\Clip_Area'
+clip_data = r'<CHANGE THIS: PATH TO YOUR CLIP BOUNDARY FEATURE CLASS>'
 
 
 # From the arcpy.Clip_analysis docstring:
@@ -48,7 +50,7 @@ geographic subset of the features in another, larger feature class.
 
 # Choose your own geodatabase and change this path.
 # If you want to output shapefiles, you'll need to change this path to a folder location.
-output_gdb = r'T:\CO\GIS\gisuser\rgfo\mtroyer\Python_Demo\Batch_Clip\Batch_Clip.gdb'
+output_gdb = r'<CHANGE THIS: PATH TO YOUR GEODATABASE>'
 
 # We may as well reuse the input (in_features) names for our outputs so it is clear what each output is..
 # So, we need to first extract the feature class names from the inputs.

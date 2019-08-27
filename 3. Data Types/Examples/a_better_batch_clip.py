@@ -66,32 +66,33 @@ def get_output_path(workspace, input_feature_class_path):
     return output_feature_class_path
 
 
-# New we can clip these corporate feature layers:
-veg_data  = r'\\blm\dfs\loc\EGIS\ReferenceState\CO\CorporateData\vegetation\Colorado GAP ReGAP 2004.lyr'
-geo_data  = r'\\blm\dfs\loc\EGIS\ReferenceState\CO\CorporateData\geoscience\USGS Statewide Geology.lyr'
-soil_data = r'\\blm\dfs\loc\EGIS\ReferenceState\CO\CorporateData\soils\NRCS STATSGO Soils.lyr'
-
-# By this boundary:
-clip_data = r'\\blm\dfs\loc\EGIS\CO\GIS\gisuser\rgfo\mtroyer\Python_Demo\Batch_Clip\Batch_Clip.gdb\Clip_Area'
-
-# And dump it all here:
-output_gdb = r'\\blm\dfs\loc\EGIS\CO\GIS\gisuser\rgfo\mtroyer\Python_Demo\Batch_Clip\Batch_Clip.gdb'
-
-# Grouo the inputs into a list
-input_fcs = [veg_data, geo_data, soil_data]
-
-for input_fc in input_fcs:
-    output_path = get_output_path(output_gdb, input_fc)
-    arcpy.Clip_analysis(in_features=input_fc, clip_features=clip_data, out_feature_class=output_path)
-
-
-
-# We can even wrap all of this up in a simple little function to run the whole process end-to-end
+# We can wrap everything up in a simple function to run the whole process end-to-end
 def batch_clip_data(workspace, in_features, clip_features):
+    """
+    Take a workspace, a list of feature classes, and a bounadry, and clip the feauture classes 
+    by the boundary and write to the workspace with the source feature class name. 
+    """
     for feature in in_features:
-        output_path = get_output_path(workspace, feature)
+        output_path = get_output_path(workspace, feature)  # Notice the call to get_output_path
         arcpy.Clip_analysis(
             in_features=feature,
             clip_features=clip_features,
             out_feature_class=output_path
             )
+
+
+if __name__ == '__main__':
+
+    # Clip these corporate feature layers:
+    veg_data  = r'\\blm\dfs\loc\EGIS\ReferenceState\CO\CorporateData\vegetation\Colorado GAP ReGAP 2004.lyr'
+    geo_data  = r'\\blm\dfs\loc\EGIS\ReferenceState\CO\CorporateData\geoscience\USGS Statewide Geology.lyr'
+    soil_data = r'\\blm\dfs\loc\EGIS\ReferenceState\CO\CorporateData\soils\NRCS STATSGO Soils.lyr'
+
+    # By this boundary:
+    clip_data = r'<CHANGE THIS: PATH TO YOUR CLIP BOUNDARY FEATURE CLASS>'
+
+    # And dump it all here:
+    output_gdb = r'<CHANGE THIS: PATH TO YOUR GEODATABASE>'
+
+    batch_clip_data(output_gdb, [veg_data, geo_data, soil_data], clip_data)
+
