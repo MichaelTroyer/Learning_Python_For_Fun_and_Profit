@@ -87,6 +87,7 @@ if __name__ == '__main__':
     veg_data  = r'\\blm\dfs\loc\EGIS\ReferenceState\CO\CorporateData\vegetation\Colorado GAP ReGAP 2004.lyr'
     geo_data  = r'\\blm\dfs\loc\EGIS\ReferenceState\CO\CorporateData\geoscience\USGS Statewide Geology.lyr'
     soil_data = r'\\blm\dfs\loc\EGIS\ReferenceState\CO\CorporateData\soils\NRCS STATSGO Soils.lyr'
+    other_data =r'sadfasdf'
 
     # By this boundary:
     clip_data = r'<CHANGE THIS: PATH TO YOUR CLIP BOUNDARY FEATURE CLASS>'
@@ -94,5 +95,5 @@ if __name__ == '__main__':
     # And dump it all here:
     output_gdb = r'<CHANGE THIS: PATH TO YOUR GEODATABASE>'
 
-    batch_clip_data(output_gdb, [veg_data, geo_data, soil_data], clip_data)
+    batch_clip_data(output_gdb, [veg_data, geo_data, soil_data, other_data], clip_data)
 

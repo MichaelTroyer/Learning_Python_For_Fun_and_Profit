@@ -4,6 +4,24 @@ import arcpy
 
 arcpy.env.overwriteOutput = True
 
+def deleteInMemory():
+    """
+    Delete in memory tables and feature classes.
+    Reset to original worksapce when done.
+    """
+    # get the original workspace location
+    orig_workspace = arcpy.env.workspace
+    # Set the workspace to in_memory
+    arcpy.env.workspace = "in_memory"
+    # Delete all in memory feature classes
+    for fc in arcpy.ListFeatureClasses():
+        arcpy.Delete_management(fc)
+    # Delete all in memory tables
+    for tbl in arcpy.ListTables():
+        arcpy.Delete_management(tbl)
+    # Reset the workspace
+    arcpy.env.workspace = orig_workspace
+
 
 #### Batch clip example: #####
 # Let's batch clip and output some features!
@@ -113,3 +131,4 @@ for sublist in clip_operations:
     # We can pass the paramters by position - i.e. Clip_analysis(in_features, clip_features, out_feature_class)
     # Or by keyword:
     arcpy.Clip_analysis(in_features=in_data, clip_features=clip_data, out_feature_class=out_path)
+    deleteInMemory()   
