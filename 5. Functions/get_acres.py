@@ -11,7 +11,7 @@ def gordon_cant_count_so_he_needs_a_python_function(path_to_fc, acres_field_name
     * acres_field_name: name of field to look for or create if not found.
 
     Return:
-    * Total acres
+    * Total acres (float)
     '''
 
     # List fields in feature class
@@ -21,6 +21,8 @@ def gordon_cant_count_so_he_needs_a_python_function(path_to_fc, acres_field_name
     for field in fields:
         field_name = field.name
         field_names.append(field_name)
+
+    #field_names = [field.name for field in arcpy.ListFields(path_to_fc)]
 
     # Look for acres field, create if not found
     if not acres_field_name in field_names:
@@ -35,6 +37,8 @@ def gordon_cant_count_so_he_needs_a_python_function(path_to_fc, acres_field_name
     with arcpy.da.SearchCursor(path_to_fc, acres_field_name) as cur:
         for row in cur:
             acres_total = acres_total + float(row[0])
+
+    # acres_total = sum([float(row[0]) for row in arcpy.da.SearchCursor(path_to_fc, acres_field_name)])
 
     print 'Total acres: ' + str(acres_total)
     return acres_total
