@@ -1,6 +1,6 @@
 import arcpy
-
 import csv
+
 
 def gordon_cant_count_so_he_needs_a_python_function(path_to_fc, acres_field_name='Acres', csv_path=None):
     '''
